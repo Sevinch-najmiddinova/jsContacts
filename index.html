@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members</title>
+    <!-- <script src="https://kit.fontawesome.com/1c2c2462bf.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <section class="wrapper open">
+
+        <header class="header">
+                <div class="row">
+                    <div class="header-con">
+                        <i class="icon-timer"></i>
+                        <span>Timer</span>
+                    </div>
+                    <div class="header-con" >
+                        <i class="icon-search"></i>
+                        <input id="input" class="input" type="text" placeholder="search">
+                    </div>
+                    <div class="header-con" >
+                        <button class="header-con_btn" type="button">New</button>
+                        <i class="icon-bell"></i>
+                        <span class="sidebar__logo">Nick Robins</span>
+                    </div>
+
+                </div>
+       
+        </header>
+        <aside class="sidebar">
+            <div class="logo "><span class="open-sidebar sidebar__logo">B</span><span
+                    class="hideInSmall sidebar__logo">OARDS</span> <button class="close-sidebar b_btn"> <i class="icon-x"></i>
+                </button>
+                <div class="sidebar-content">
+                    <p  class="hideInSmall text__sidebar"> <i class="icon-clock"></i> Recently accessed 
+                        <i class="icon-circle-down" id="icon" ></i> </p>
+                        <!-- open-sidebar  close-sidebar -->
+                        <p class=" textsidebarhelper">Project K</p>
+                        <p class=" textsidebarhelper">Project A</p>
+                    
+                    <p class="text__sidebar sidebar__el"> <i class="icon-calendar"></i> Boards</p>
+                    <p class="text__sidebar sidebar__el"> <i class="icon-plus"></i> Following</p>
+                    <p class="text__sidebar sidebar__el"> <i class="icon-timer"></i> Time Records</p>
+                    <p class="text__sidebar sidebar__el"> <i class="icon-users"></i> Members</p>
+                    <p class="text__sidebar sidebar__el"> <i class="icon-setting"></i> Settings</p>
+                </div>
+            </div>
+        </aside>
+        <section class="contacts">
+            <div class="my-contact">
+                <h1>Members</h1>
+                <div>
+                    <a class="text__sidebar" href="#">Members</a>
+                    <a class="text__sidebar" href="#">Teams</a>
+                    <a  class="text__sidebar" href="#">Pending</a>
+                </div>
+                <div class="cards" id="table">
+                    <div class="card">
+                        <img class="card__img" src="./img/rasm.jpg" alt="">
+                        <p class="text">sevinch</p>
+                        <p class="text__opacity">frontend</p>
+                        <span class="text__tasks">  </span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </section>
+    <script src="./js.js"></script>
+
+</body>
+
+</html>
