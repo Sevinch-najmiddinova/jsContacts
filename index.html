@@ -5,74 +5,121 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
     <title>Members</title>
-    <!-- <script src="https://kit.fontawesome.com/1c2c2462bf.js" crossorigin="anonymous"></script> -->
-    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
-    <section class="wrapper open">
-
+    <div class="wrapper">
         <header class="header">
-                <div class="row">
-                    <div class="header-con">
-                        <i class="icon-timer"></i>
-                        <span>Timer</span>
-                    </div>
-                    <div class="header-con" >
-                        <i class="icon-search"></i>
-                        <input id="input" class="input" type="text" placeholder="search">
-                    </div>
-                    <div class="header-con" >
-                        <button class="header-con_btn" type="button">New</button>
-                        <i class="icon-bell"></i>
-                        <span class="sidebar__logo">Nick Robins</span>
-                    </div>
-
+            <div class="header__navbar ">
+                <div class="header__timer">
+                    <i class="icon-timer"></i>
+                    <span class="header__text">Timer</span>
                 </div>
-       
+                <div class="header__search">
+                    <i class="icon-search"></i>
+                    <input type="text" id='searchInput' class="header__search__input" placeholder="Search">
+                </div>
+                <div class="header__newUser d-flex">
+                    <select name="" id="" class="header__newUser__select">
+                        <option value="" selected class="header__newUser__option">New</option>
+                    </select>
+                    <i class="icon-bell"></i>
+                    <span class="header__newUser__name">Nick Robins</span>
+                </div>
+            </div>
         </header>
-        <aside class="sidebar">
-            <div class="logo "><span class="open-sidebar sidebar__logo">B</span><span
-                    class="hideInSmall sidebar__logo">OARDS</span> <button class="close-sidebar b_btn"> <i class="icon-x"></i>
-                </button>
-                <div class="sidebar-content">
-                    <p  class="hideInSmall text__sidebar"> <i class="icon-clock"></i> Recently accessed 
-                        <i class="icon-circle-down" id="icon" ></i> </p>
-                        <!-- open-sidebar  close-sidebar -->
-                        <p class=" textsidebarhelper">Project K</p>
-                        <p class=" textsidebarhelper">Project A</p>
-                    
-                    <p class="text__sidebar sidebar__el"> <i class="icon-calendar"></i> Boards</p>
-                    <p class="text__sidebar sidebar__el"> <i class="icon-plus"></i> Following</p>
-                    <p class="text__sidebar sidebar__el"> <i class="icon-timer"></i> Time Records</p>
-                    <p class="text__sidebar sidebar__el"> <i class="icon-users"></i> Members</p>
-                    <p class="text__sidebar sidebar__el"> <i class="icon-setting"></i> Settings</p>
+
+        <aside class="sidebar ">
+            <div class="row"> <!-- + -->
+                <div class="sidebar__logo">Boards</div>
+                <i class="icon-x col-auto" id="close-sidebar"></i>
+            </div>
+
+            <div class="menu-item openMenuItem">
+                <a href="#" class="menu-item__link" id="sub-menu__item">
+                    <i class="icon-clock leftIcon"></i>
+                    <span class="menu-item__text">Recently accessed</span>
+                    <i class="icon-circle-down toggle-up" id="bottom"></i>
+                </a>
+                <div class="sub-menu" id="submenu">
+                    <a href="" class="sub-menu__link">Project K</a>
+                    <a href="" class="sub-menu__link">Project A</a>
                 </div>
+            </div>
+
+            <div class="menu-item">
+                <a href="#" class="menu-item__link">
+                    <i class="icon-calendar leftIcon"></i>
+                    <span class="menu-item__text">Boards</span>
+                </a>
+            </div>
+
+            <div class="menu-item">
+                <a href="#" class="menu-item__link redDot">
+                    <img class="menu-item__star" src="img/Star.svg" alt="">
+                    <span class="menu-item__text">Following</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="#" class="menu-item__link">
+                    <i class="icon-timer leftIcon"></i>
+                    <span class="menu-item__text">Time Records</span>
+                </a>
+            </div>
+            <div class="menu-item activeMenu">
+                <a href="#" class="menu-item__link activeMenuText redDot">
+                    <i class="icon-users leftIcon"></i>
+                    <span class="menu-item__text ">Members</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="" class="menu-item__link">
+                    <i class="icon-setting leftIcon"></i>
+                    <span class="menu-item__text">Settings</span>
+                </a>
             </div>
         </aside>
-        <section class="contacts">
-            <div class="my-contact">
-                <h1>Members</h1>
-                <div>
-                    <a class="text__sidebar" href="#">Members</a>
-                    <a class="text__sidebar" href="#">Teams</a>
-                    <a  class="text__sidebar" href="#">Pending</a>
-                </div>
-                <div class="cards" id="table">
-                    <div class="card">
-                        <img class="card__img" src="./img/rasm.jpg" alt="">
-                        <p class="text">sevinch</p>
-                        <p class="text__opacity">frontend</p>
-                        <span class="text__tasks">  </span>
+
+        <section class="content ">
+            <h1 class="content__title">Members</h1>
+
+            <ul class="navbar__nav d-flex">
+                <li class="nav-item activee">
+                    <a class="nav-link" href="#" data-type='0'>Members</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-type='1'>Teams</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-type='2'>Pending</a>
+                </li>
+            </ul>
+
+
+                <div class="row">
+                    <div class="cards d-flex" id="cards">
+
                     </div>
-
                 </div>
-            </div>
+          
         </section>
-    </section>
-    <script src="./js.js"></script>
 
+    </div>
+
+    <!-- The Modal -->
+  
+    <div class="modall" id="myModal">
+        <a href="">Assign task</a>
+        <a href="">View time records</a>
+        <a href="">Remove</a>
+    </div>
+
+
+    <script src="js.js"></script>
 </body>
 
 </html>

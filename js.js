@@ -1,104 +1,180 @@
-let members = [
-  new Person('Antionette Martinez', 'UI Designer', 'img/rasm.jpg', '3 Boards','24 Tasks'),
-  new Person('Chris Harris', 'Front End', 'img/rasm.jpg', '3 Boards','24 Tasks '),
-  new Person('Dana Sims', 'C# Developer', 'img/rasm.jpg', '3 Boards',' 24 Tasks'),
-  new Person('Nick Robins', '.Net Developer', 'img/rasm.jpg', '3 Boards', '24 Tasks'),
-  new Person('Sandra Osborne', 'Team Leader', 'img/sandra.jpg', '3 Boards','24 Tasks'),
-  new Person('Tim Johnson', 'Product Owner', 'img/rasm.jpg', '3 Boards','24 Tasks'),
-  new Person('Helen Coppola', 'UI Designer', 'img/helen.jpg', '3 Boards','24 Tasks'),
-  new Person('Victor Parker', 'Full Stack', 'img/victor.jpg', '3 Boards',' 24 Tasks'),
+// list of users4
+let users = [
+  new User('Antionette Martinez', 'UI Designer', 3, undefined, 24, '1 task overdue!'),
+  new User('Chris Harris', 'C# Developer', 3, 'img/rasm.jpg', 24, undefined),
+  new User('Dana Sims', 'Front End', 3, undefined, 24, undefined),
+  new User('Nick Robins', '.Net Developer', 3, undefined, 24, '2 task overdue!'),
+  new User('Sandra Osborne', 'Team Leader', 3, 'img/sandra.jpg', 24, undefined),
+  new User('Team Johnson', 'Product Owner', 3, undefined, 24, undefined),
+  new User('Helen Coppola', 'UI Designer', 3, 'img/helen.jpg', 24, undefined),
+  new User('Victor Parker', 'Full Stack', 3, 'img/victor.jpg', 24, undefined),
+]
 
-];
-
-// let type = ['Menbers', 'Teams', 'Pending'];
-function Person(name, job, photo, type,type2) {
+function User(name, profession, boards, image, tasks, overdue) {
   this.name = name;
-  this.job = job;
-  this.photo = photo;
-  this.type = type;
-  this.type2 = type2;
+  this.profession = profession;
+  this.boards = boards;
+  this.image = image;
+  this.tasks = tasks;
+  this.overdue = overdue;
 }
-// card yaratish
-const tableEl = document.getElementById('table');
 
-function createMembersDiv(el) {
-  let person = document.createElement('div');
-  person.className = 'card'; // div
+const cards = document.getElementById('cards');
 
-  let image = document.createElement('img'); // rasmi
-  image.className = 'card__img'
-  image.src = el.photo;
+function createMembersCard(el) {
+  let card = document.createElement('div');
+  card.className = "cards__member";
 
-  let name = document.createElement('p'); // ism
-  name.className = 'text';
-  name.innerText = el.name;
+  let cardButton = document.createElement('button');
+  cardButton.className = 'cards__button';
 
-  let job = document.createElement('p'); // job 
-  job.className = 'text__opacity';
-  job.innerText = el.job;
+  let cardIcon = document.createElement('i');
+  cardIcon.className = 'icon-menu cards__button';
+  cardButton.appendChild(cardIcon);
 
-  let div1 = document.createElement('div');
-  div1.className = 'content_col'
-  let span = document.createElement('span'); 
-  span.className = 'text__tasks'; // 3 board 
-  span.innerText = el.type;
+  // Photo bulsa Bosh harfini olish
   
-  let spanSec = document.createElement('span');
-  spanSec.className = 'text__tasks1'; //  24 tasks 
-  spanSec.innerText = el.type2;
+  let img = document.createElement('img')
+      
+  if (el.image) {
+      img.src = el.image;
+      img.className = 'cards__member__image';
+  } 
+  else{
+      let avatar = document.createElement('span');
+      avatar.className = 'avatar';
+      avatar.style.backgroundColor = generateDarkColorRgb();
+      card.appendChild(avatar);
+      let a = el.name.split(' ')[0][0];
+      let b = el.name.split(' ')[1][0];
+      avatar.innerText = a + b;
+      card.appendChild(avatar);
+  }
+  card.appendChild(img);
+  
 
-div1.appendChild(span);
-div1.appendChild(spanSec)
-  person.appendChild(image); // nomi + narxi + rasm = div
-  person.appendChild(name);
-  person.appendChild(job);
-  // person.appendChild(span);
-  // person.appendChild(spanSec);
-  person.appendChild(div1)
+  let memberName = document.createElement('h3');
+  memberName.className = 'cards-member__name';
+  memberName.innerText = el.name;
 
-  tableEl.appendChild(person);
+  let memberProfession = document.createElement('p');
+  memberProfession.className = 'cards-member__profession';
+  memberProfession.innerText = el.profession;
+
+
+  card.appendChild(cardButton);
+  card.appendChild(memberName);
+  card.appendChild(memberProfession);
+
+  let rectangleDiv = document.createElement('div');
+  rectangleDiv.className = 'rectangle-box';
+  card.appendChild(rectangleDiv);
+
+  let boardsDiv = document.createElement('div');
+  boardsDiv.className = 'boards' ;
+  rectangleDiv.appendChild(boardsDiv);
+
+  let tasksDiv = document.createElement('div');
+  tasksDiv.className = 'tasks';
+  rectangleDiv.appendChild(tasksDiv);
+
+  let boardsNumber = document.createElement('span');
+  boardsNumber.className = 'boards-span';
+  boardsNumber.innerText = el.boards + '\n Boards';
+  boardsDiv.appendChild(boardsNumber);
+
+  let tasksNumber = document.createElement('span');
+  tasksNumber.className = 'tasks-span';
+  tasksNumber.innerText = el.tasks + '\n Tasks';
+  tasksDiv.appendChild(tasksNumber);
+
+
+
+  if(el.overdue){
+      let overdueText = document.createElement('p');
+      overdueText.className = 'overdue-text';
+      overdueText.innerText = el.overdue;
+      card.appendChild(overdueText);
+  }
+
+  cards.appendChild(card);/*biggest DIV */
 }
 
-function funksiya(arr) {
-  tableEl.innerHTML = '';
-  for (let i = 0; i < arr.length; i++) {
-    createMembersDiv(arr[i]);
+//random background color
+function generateDarkColorRgb() {
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256/2);
+  return "rgb(" + red + ", " + green + ", " + blue + ")";
+}
+
+
+function addToMainCard(array) {
+  cards.innerHTML = '';
+  for (let i = 0; i < array.length; i++) {
+      createMembersCard(array[i]);
   }
 }
 
-funksiya(members)
-////
-const closeSidebarEL = document.getElementsByClassName('close-sidebar')[0];
-const openSidebarEL = document.getElementsByClassName('open-sidebar')[0];
-const wrapperEl = document.getElementsByClassName('wrapper')[0];
-const accessedEl = document.getElementsByClassName('accessed')[0];
-const accessed__p = document.getElementsByClassName('accessed')[0];
+addToMainCard(users);
 
-closeSidebarEL.addEventListener('click', function(){
-    wrapperEl.classList.remove('open');
-});
+// SEARCH 
 
+const inputEl = document.getElementById('searchInput');
+const cardsEl = document.getElementsByClassName('cards__member')
+inputEl.addEventListener('keyup', search);
 
-openSidebarEL.addEventListener('click', function(){
-    wrapperEl.classList.add('open');
-});
-
-
-const inputEl = document.getElementById('input');
-const cards = document.getElementsByClassName('card');
-
-function search(){
-    for(el of cards){
-        
-        if(el.innerText.includes(inputEl.value)){
-          el.style.display = 'block';  
-        }
-        
-        else {
-            el.style.display = 'none'; 
-        }
-
-    }
+function search() {
+  for (el of cardsEl) {
+      if (el.innerText.toLowerCase().includes(inputEl.value)) {
+          el.style.display = "block";
+          
+      } else {
+          el.style.display = 'none';
+      }
+  }
 }
-inputEl.addEventListener('keyup', search)
 
+/*--------------------------*/
+
+/* SIDEBAR */
+const closeSidebarEl = document.getElementById('close-sidebar');
+const openSidebarEl = document.getElementsByClassName('sidebar__logo')[0];
+const wrapperEl = document.getElementsByClassName('wrapper')[0];
+const menuItem = document.getElementById('sub-menu__item');
+const submenuEl = document.getElementById('submenu');
+const iconBottom = document.getElementById('bottom');
+
+
+closeSidebarEl.addEventListener('click', function () {
+wrapperEl.classList.remove('open');
+});
+openSidebarEl.addEventListener('click', function () {
+  wrapperEl.classList.add('open');
+});
+
+menuItem.addEventListener('click', function() {
+  if(submenuEl.style.display == 'block') {
+      submenuEl.style.display = 'none';
+      iconBottom.style.transform = 'rotate(0deg)'
+  } else  {
+      submenuEl.style.display = 'block'
+      iconBottom.style.transform = 'rotate(180deg)'
+  }
+});
+
+
+
+
+// Get the modal  TODO:not working
+
+let modal = document.getElementById("myModal");
+
+document.addEventListener('click', function(event){
+  console.log(event.target);
+  if(event.target.className == 'cards__button') {
+      modal.style.display = "block";
+  } else {
+      modal.style.display = "none";
+  }
+});
